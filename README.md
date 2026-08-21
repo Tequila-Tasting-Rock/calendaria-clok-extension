@@ -1,53 +1,36 @@
-# Phil-Style Clock
+# Phil's Clock Only
 
-A standalone Foundry VTT clock visually inspired by the clock in Phil's Day&Night Cycle.
+A standalone Foundry VTT clock inspired by the segmented clock presentation in Phil's Day & Night Cycle. Calendaria supplies all calendar and world-time data; this module supplies only the clock interface.
 
-## Features
+## Included
 
-- Clock only.
-- Uses Calendaria time when Calendaria is active.
-- Falls back to Foundry World Time when Calendaria is unavailable.
-- 24-hour digital time display.
-- Segmented circular clock face.
-- Day-phase indicator.
-- Draggable positioning.
-- Collapsible clock face.
-- Smart / Above / Below / Left / Right orientation.
-- Persistent client-side position and orientation.
+- Calendaria time and active-calendar synchronization
+- Smooth display updates while Calendaria's real-time clock is running
+- Segmented day/night clock face with analog hands
+- 12-hour or 24-hour digital readout
+- Draggable, client-specific position
+- Collapsible clock face
+- Calendaria-permission-aware controls for ±10 minutes and ±1 hour
+- Foundry VTT 13.351–14 compatibility
 
-## Installation
+## Not included
 
-### Recommended
+Calendar, weather, wind, moon phases, scene darkness, lighting automation, particles, chat cards, journals, events, or other day/night module systems.
 
-Install through Foundry using this manifest URL:
+## Install
 
-`https://github.com/YOUR_USERNAME/phil-style-clock/releases/latest/download/module.json`
+1. Install and enable **Calendaria**.
+2. Extract the `phils-clock-only` folder into Foundry's `Data/modules` directory.
+3. Restart Foundry VTT.
+4. Enable **Phil's Clock Only** in your world. Foundry will enforce Calendaria as a required dependency.
 
-### Development
+The clock appears at the bottom-right. Drag its lower bar to move it, or click the clock icon to collapse it.
 
-Clone this repository into:
+## Optional macro API
 
-`FoundryVTT/Data/modules/phil-style-clock/`
+```js
+window.PhilsClockOnly.toggle();
+window.PhilsClockOnly.resetPosition();
+```
 
-## Calendaria
-
-Calendaria is recommended, not required. When active, the clock reads the calendar-aware time exposed by Calendaria.
-
-## Releases
-
-Releases are created from GitHub tags in the form:
-
-`v1.0.0`
-
-The GitHub Action generates:
-
-- `module.json`
-- `module.zip`
-
-The generated release manifest points to that exact release's ZIP. The stable manifest URL always points to the latest release.
-
-## License
-
-GPL-3.0-or-later for this implementation.
-
-This project does not include Phil's original artwork/assets. It is an independent implementation inspired by the visual behavior of the referenced module.
+This is an independent, minimal implementation and does not contain the original module's weather/calendar systems or bundled artwork.

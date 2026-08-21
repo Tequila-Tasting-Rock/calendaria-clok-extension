@@ -1,293 +1,109 @@
-
-#phil-style-clock {
-  --clock-size: 174px;
-  --phase-accent: #46516d;
-  --phase-glow: #273149;
-
+#pco-clock {
+  --pco-hour-angle: 0deg;
+  --pco-minute-angle: 0deg;
   position: fixed;
-  left: auto;
-  top: auto;
-  right: 22px;
-  bottom: 22px;
-  width: var(--clock-size);
-  height: var(--clock-size);
-  z-index: 10000;
-  color: #eee7d6;
-  font-family: "Signika", "Palatino Linotype", serif;
+  right: 24px;
+  bottom: 72px;
+  z-index: 70;
+  width: 230px;
+  color: #f6e8bf;
+  filter: drop-shadow(0 10px 12px rgba(0, 0, 0, .55));
   user-select: none;
-  pointer-events: auto;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,.55));
+  transition: opacity .18s ease;
 }
 
-#phil-style-clock.dragging {
-  cursor: grabbing;
-}
+#pco-clock.hidden { display: none; }
 
-#phil-style-clock.hidden {
-  display: none;
-}
-
-#phil-style-clock .psc-shell {
+#pco-clock .pco-face {
   position: relative;
-  width: 100%;
-  height: 100%;
+  box-sizing: border-box;
+  width: 210px;
+  height: 210px;
+  margin: 0 auto -9px;
+  overflow: hidden;
+  border: 8px solid #5e4424;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 48%, #335e79 0 32%, #17283a 63%, #0b1019 100%);
+  box-shadow: inset 0 0 0 3px #c29a53, inset 0 0 28px #05080d, 0 0 0 2px #23170d;
 }
 
-#phil-style-clock .psc-clock-face {
+#pco-clock .pco-sky {
   position: absolute;
   inset: 0;
-  border-radius: 50%;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 48%, rgba(255,255,255,.07), transparent 42%),
-    radial-gradient(circle, #302c28 0 61%, #1b1917 62% 68%, #080807 69% 100%);
-  border: 2px solid rgba(184,164,126,.72);
-  box-shadow:
-    inset 0 0 0 3px rgba(15,13,11,.75),
-    inset 0 0 20px rgba(0,0,0,.85),
-    0 0 0 1px rgba(238,224,192,.18),
-    0 6px 18px rgba(0,0,0,.6);
-  transition: transform .18s ease, opacity .18s ease;
-}
-
-#phil-style-clock .psc-segments {
-  position: absolute;
-  inset: 5px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-#phil-style-clock .psc-segment {
-  position: absolute;
-  width: 50%;
-  height: 50%;
-  left: 50%;
-  top: 50%;
-  transform-origin: 0 0;
-  background:
-    linear-gradient(135deg, rgba(218,199,153,.14), rgba(40,36,31,.12));
-  clip-path: polygon(0 0, 100% 0, 100% 16%, 15% 100%, 0 100%);
-  opacity: .58;
-  border: 1px solid rgba(213,194,151,.12);
-}
-
-#phil-style-clock .s0 { transform: rotate(-90deg) skewY(-45deg); }
-#phil-style-clock .s1 { transform: rotate(-45deg) skewY(-45deg); }
-#phil-style-clock .s2 { transform: rotate(0deg) skewY(-45deg); }
-#phil-style-clock .s3 { transform: rotate(45deg) skewY(-45deg); }
-#phil-style-clock .s4 { transform: rotate(90deg) skewY(-45deg); }
-#phil-style-clock .s5 { transform: rotate(135deg) skewY(-45deg); }
-#phil-style-clock .s6 { transform: rotate(180deg) skewY(-45deg); }
-#phil-style-clock .s7 { transform: rotate(225deg) skewY(-45deg); }
-
-#phil-style-clock .psc-segment.active {
   opacity: .95;
   background:
-    radial-gradient(circle at 65% 35%, color-mix(in srgb, var(--phase-accent) 65%, white 5%), transparent 48%),
-    linear-gradient(135deg, var(--phase-glow), #191816 72%);
-  box-shadow: inset 0 0 15px rgba(255,220,150,.14);
+    radial-gradient(circle at 72% 28%, #ffe5a0 0 7px, #f6aa45 8px, transparent 19px),
+    radial-gradient(circle at 28% 72%, rgba(223, 234, 255, .85) 0 6px, transparent 7px),
+    conic-gradient(from -22.5deg, #121c35 0 12.5%, #56314d 0 25%, #d47b45 0 37.5%, #e6b665 0 50%, #78aabd 0 62.5%, #397d98 0 75%, #5d456c 0 87.5%, #17213a 0);
+  clip-path: circle(48%);
 }
 
-#phil-style-clock .psc-inner-ring {
+#pco-clock .pco-ticks {
   position: absolute;
-  inset: 25px;
+  inset: 9px;
   border-radius: 50%;
-  border: 1px solid rgba(224,208,174,.24);
-  box-shadow:
-    inset 0 0 14px rgba(0,0,0,.75),
-    0 0 8px rgba(0,0,0,.4);
+  background: repeating-conic-gradient(from -1deg, rgba(255,239,191,.95) 0 1.5deg, transparent 1.5deg 30deg);
+  -webkit-mask: radial-gradient(circle, transparent 0 80%, #000 81%);
+  mask: radial-gradient(circle, transparent 0 80%, #000 81%);
 }
 
-#phil-style-clock .psc-center {
+#pco-clock .pco-hand {
   position: absolute;
-  inset: 48px 25px 36px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-shadow: 0 2px 3px #000;
-  z-index: 4;
-}
-
-#phil-style-clock .psc-time {
-  font-size: 29px;
-  line-height: 1;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
-
-#phil-style-clock .psc-phase {
-  margin-top: 6px;
-  font-size: 12px;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  opacity: .78;
-}
-
-#phil-style-clock .psc-hand {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 1px;
-  height: 50%;
+  left: calc(50% - 2px);
+  bottom: 50%;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(#fff1b8, #b87b30);
+  box-shadow: 0 1px 3px #000;
   transform-origin: 50% 100%;
-  z-index: 5;
-  pointer-events: none;
 }
 
-#phil-style-clock .psc-hand-line {
+#pco-clock .pco-hour-hand { height: 47px; transform: rotate(var(--pco-hour-angle)); }
+#pco-clock .pco-minute-hand { height: 67px; width: 3px; left: calc(50% - 1.5px); transform: rotate(var(--pco-minute-angle)); }
+#pco-clock .pco-pin { position:absolute; width:12px; height:12px; left:calc(50% - 6px); top:calc(50% - 6px); border-radius:50%; background:#f0cf84; box-shadow:0 0 0 3px #5f351a; }
+
+#pco-clock .pco-readout {
   position: absolute;
-  left: 0;
-  bottom: 7px;
-  width: 2px;
-  height: 57px;
+  left: 50%;
+  bottom: 22px;
+  min-width: 92px;
+  padding: 3px 10px 4px;
+  border: 1px solid rgba(229, 190, 111, .7);
+  border-radius: 12px;
+  background: rgba(10, 13, 20, .82);
+  text-align: center;
   transform: translateX(-50%);
-  background: linear-gradient(to top, rgba(236,214,166,.95), rgba(236,214,166,.05));
-  box-shadow: 0 0 5px rgba(224,189,121,.35);
 }
 
-#phil-style-clock .psc-hand-dot {
-  position: absolute;
-  left: 50%;
-  bottom: 3px;
-  width: 9px;
-  height: 9px;
-  transform: translate(-50%, 50%);
-  border-radius: 50%;
-  background: #d6bf91;
-  border: 1px solid #211d18;
-  box-shadow: 0 0 5px rgba(0,0,0,.8);
+#pco-clock .pco-time { display:block; font:700 16px/1.1 Georgia,serif; letter-spacing:.5px; color:#fff2c9; }
+#pco-clock .pco-phase { display:block; margin-top:2px; font:10px/1 sans-serif; letter-spacing:1.5px; text-transform:uppercase; color:#d4b77b; }
+
+#pco-clock .pco-bar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 38px;
+  padding: 5px 7px;
+  border: 2px solid #5b3e20;
+  border-radius: 18px;
+  background: linear-gradient(#563d25, #21170f 55%, #100b08);
+  box-shadow: inset 0 0 0 1px #b08347, inset 0 1px 8px rgba(255,219,143,.18);
+  cursor: grab;
 }
 
-#phil-style-clock .psc-icon {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 42px;
-  height: 42px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  border: 1px solid rgba(216,194,148,.7);
-  background:
-    radial-gradient(circle, #4b463f 0 45%, #25221f 47% 100%);
-  color: #ead9b7;
-  font-size: 25px;
-  line-height: 1;
-  padding: 0;
-  box-shadow:
-    inset 0 0 7px rgba(0,0,0,.9),
-    0 2px 7px rgba(0,0,0,.7);
-  cursor: pointer;
-  z-index: 8;
-}
+#pco-clock .pco-bar:active { cursor:grabbing; }
+#pco-clock button { width:auto; min-width:0; height:26px; margin:0; padding:0 6px; border:1px solid #806039; border-radius:8px; background:linear-gradient(#3f3226,#1c1510); color:#ead5a6; font:700 10px/1 sans-serif; }
+#pco-clock button:hover { color:#fff5cc; border-color:#d3ad65; box-shadow:0 0 6px rgba(224,175,88,.45); }
+#pco-clock .pco-toggle { flex:0 0 28px; padding:0; border-radius:50%; font-size:13px; }
+#pco-clock .pco-controls { display:flex; gap:3px; flex:1; justify-content:center; }
+#pco-clock .pco-grip { width:18px; text-align:center; opacity:.65; }
 
-#phil-style-clock .psc-icon:hover {
-  filter: brightness(1.15);
-}
+#pco-clock.collapsed { width:44px; }
+#pco-clock.collapsed .pco-face, #pco-clock.collapsed .pco-controls, #pco-clock.collapsed .pco-grip { display:none; }
+#pco-clock.collapsed .pco-bar { padding:5px; border-radius:50%; }
+#pco-clock.collapsed .pco-toggle { width:30px; height:30px; }
 
-#phil-style-clock .psc-arrow {
-  position: absolute;
-  z-index: 9;
-  color: #d8c7a5;
-  font-size: 15px;
-  text-shadow: 0 2px 4px #000;
-  pointer-events: none;
-  opacity: .85;
-}
-
-#phil-style-clock .psc-popover {
-  position: absolute;
-  z-index: 20;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-  padding: 7px;
-  width: 148px;
-  border: 1px solid rgba(190,170,132,.5);
-  border-radius: 7px;
-  background: rgba(25,22,19,.96);
-  box-shadow: 0 5px 18px rgba(0,0,0,.65);
-}
-
-#phil-style-clock .psc-popover button {
-  min-height: 27px;
-  padding: 2px 4px;
-  border: 1px solid rgba(190,170,132,.28);
-  background: rgba(62,56,49,.7);
-  color: #e6dbc6;
-  border-radius: 3px;
-  font-family: inherit;
-  font-size: 11px;
-  cursor: pointer;
-}
-
-#phil-style-clock .psc-popover button:hover {
-  background: rgba(108,94,73,.8);
-}
-
-#phil-style-clock.orientation-above .psc-clock-face {
-  transform: translateY(-72%);
-}
-#phil-style-clock.orientation-below .psc-clock-face {
-  transform: translateY(72%);
-}
-#phil-style-clock.orientation-left .psc-clock-face {
-  transform: translateX(-72%);
-}
-#phil-style-clock.orientation-right .psc-clock-face {
-  transform: translateX(72%);
-}
-
-#phil-style-clock.orientation-above .psc-arrow {
-  left: calc(50% - 5px);
-  bottom: -2px;
-}
-#phil-style-clock.orientation-below .psc-arrow {
-  left: calc(50% - 5px);
-  top: -2px;
-  transform: rotate(180deg);
-}
-#phil-style-clock.orientation-left .psc-arrow {
-  top: calc(50% - 8px);
-  right: -2px;
-  transform: rotate(90deg);
-}
-#phil-style-clock.orientation-right .psc-arrow {
-  top: calc(50% - 8px);
-  left: -2px;
-  transform: rotate(-90deg);
-}
-
-#phil-style-clock.collapsed .psc-clock-face {
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(.65);
-}
-#phil-style-clock.collapsed .psc-arrow {
-  display: none;
-}
-
-#phil-style-clock .psc-popover[hidden] {
-  display: none;
-}
-
-#phil-style-clock.orientation-above .psc-popover {
-  left: 50%;
-  bottom: 100%;
-  transform: translate(-50%, -82px);
-}
-#phil-style-clock.orientation-below .psc-popover {
-  left: 50%;
-  top: 100%;
-  transform: translate(-50%, 82px);
-}
-#phil-style-clock.orientation-left .psc-popover {
-  right: 100%;
-  top: 50%;
-  transform: translate(-82px, -50%);
-}
-#phil-style-clock.orientation-right .psc-popover {
-  left: 100%;
-  top: 50%;
-  transform: translate(82px, -50%);
+@media (max-width: 700px) {
+  #pco-clock { transform: scale(.86); transform-origin: right bottom; }
 }

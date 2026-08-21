@@ -1,37 +1,32 @@
 {
-  "id": "phil-style-clock",
-  "title": "Phil-Style Clock",
-  "description": "A standalone Foundry VTT clock inspired by the visual style and interaction of Phil's Day&Night Cycle. Uses Calendaria as its time source when Calendaria is active.",
-  "version": "0.0.0",
-  "authors": [
-    {
-      "name": "YOUR_NAME",
-      "url": "https://github.com/Tequila-Tasting-Rock"
-    }
-  ],
+  "id": "phils-clock-only",
+  "title": "Phil's Clock Only",
+  "description": "A standalone, draggable segmented world-time clock for Foundry VTT. No calendar, weather, lighting, or scene effects.",
+  "version": "1.1.0",
   "compatibility": {
-    "minimum": "12",
-    "verified": "13"
+    "minimum": "13.351",
+    "verified": "14"
   },
   "relationships": {
-    "systems": [],
-    "requires": [],
-    "recommends": [
+    "requires": [
       {
         "id": "calendaria",
-        "type": "module"
+        "type": "module",
+        "compatibility": {
+          "minimum": "1.0.0"
+        }
       }
     ]
   },
+  "authors": [
+    {
+      "name": "Custom standalone replication"
+    }
+  ],
   "esmodules": [
     "scripts/clock.js"
   ],
   "styles": [
     "styles/clock.css"
-  ],
-  "url": "https://github.com/Tequila-Tasting-Rock/calendaria-clok-extension",
-  "bugs": "https://github.com/Tequila-Tasting-Rock/calendaria-clok-extension/issues",
-  "changelog": "https://github.com/Tequila-Tasting-Rock/calendaria-clok-extension/releases",
-  "readme": "https://github.com/Tequila-Tasting-Rock/calendaria-clok-extension/blob/main/README.md",
-  "license": "LICENSE"
+  ]
 }
