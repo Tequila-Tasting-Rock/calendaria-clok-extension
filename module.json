@@ -6,7 +6,7 @@
   "authors": [
     {
       "name": "YOUR_NAME",
-      "url": "https://github.com/YOUR_USERNAME"
+      "url": "https://github.com/Tequila-Tasting-Rock"
     }
   ],
   "compatibility": {
@@ -29,9 +29,9 @@
   "styles": [
     "styles/clock.css"
   ],
-  "url": "https://github.com/YOUR_USERNAME/phil-style-clock",
-  "bugs": "https://github.com/YOUR_USERNAME/phil-style-clock/issues",
-  "changelog": "https://github.com/YOUR_USERNAME/phil-style-clock/releases",
-  "readme": "https://github.com/YOUR_USERNAME/phil-style-clock/blob/main/README.md",
+  "url": "https://github.com/Tequila-Tasting-Rock/calendaria-clok-extension",
+  "bugs": "https://github.com/Tequila-Tasting-Rock/calendaria-clok-extension/issues",
+  "changelog": "https://github.com/Tequila-Tasting-Rock/calendaria-clok-extension/releases",
+  "readme": "https://github.com/Tequila-Tasting-Rock/calendaria-clok-extension/blob/main/README.md",
   "license": "LICENSE"
 }
