@@ -1,51 +1,53 @@
 # Phil-Style Clock
 
-A standalone Foundry VTT clock inspired by the visual concept and interaction pattern of Phil's Day&Night Cycle.
+A standalone Foundry VTT clock visually inspired by the clock in Phil's Day&Night Cycle.
 
-## Included
-- Foundry `game.time.worldTime` synchronization
-- 24-hour display
-- 8-segment day/night face
-- Day-phase label
-- Rotating time hand
-- Collapsible clock face
-- Drag-and-drop positioning
-- Smart / Above / Below / Left / Right orientation
-- Right-click orientation selector
-- Persistent position and orientation
+## Features
 
-## Not included
-Calendar, weather, weather FX, lighting control, moon phases, events, notes, climate systems, or Simple Calendar integration.
+- Clock only.
+- Uses Calendaria time when Calendaria is active.
+- Falls back to Foundry World Time when Calendaria is unavailable.
+- 24-hour digital time display.
+- Segmented circular clock face.
+- Day-phase indicator.
+- Draggable positioning.
+- Collapsible clock face.
+- Smart / Above / Below / Left / Right orientation.
+- Persistent client-side position and orientation.
 
 ## Installation
-Copy the `phil-style-clock` folder into:
 
-`FoundryVTT/Data/modules/`
+### Recommended
 
-Then enable **Phil-Style Clock** in your world.
+Install through Foundry using this manifest URL:
 
-## Macro API
-```js
-window.PhilStyleClock.toggle();
-window.PhilStyleClock.toggleClockFace();
-window.PhilStyleClock.resetPosition();
-window.PhilStyleClock.setTime(12, 0);
-```
+`https://github.com/YOUR_USERNAME/phil-style-clock/releases/latest/download/module.json`
 
-`setTime()` changes Foundry World Time and is GM-only.
+### Development
+
+Clone this repository into:
+
+`FoundryVTT/Data/modules/phil-style-clock/`
+
+## Calendaria
+
+Calendaria is recommended, not required. When active, the clock reads the calendar-aware time exposed by Calendaria.
+
+## Releases
+
+Releases are created from GitHub tags in the form:
+
+`v1.0.0`
+
+The GitHub Action generates:
+
+- `module.json`
+- `module.zip`
+
+The generated release manifest points to that exact release's ZIP. The stable manifest URL always points to the latest release.
 
 ## License
-This implementation is independent code. It does not include Phil's original artwork/assets.
-The referenced project is used only as a behavioral and visual reference.
 
+GPL-3.0-or-later for this implementation.
 
-## Calendaria integration
-
-When **Calendaria** is enabled, this clock automatically uses:
-
-- `CALENDARIA.api.getCurrentDateTime()` for the displayed time.
-- The active calendar's `hoursPerDay`, `minutesPerHour`, and `secondsPerMinute` for clock rotation.
-- `CALENDARIA.api.getSunrise()` / `getSunset()` for the visual day phase when available.
-- `CALENDARIA.api.setDateTime()` when using the module's `setTime()` macro.
-
-This means the clock follows Calendaria's calendar rather than assuming a fixed 24-hour Gregorian day. Calendaria itself uses Foundry's time components and exposes its public API for integrations.
+This project does not include Phil's original artwork/assets. It is an independent implementation inspired by the visual behavior of the referenced module.

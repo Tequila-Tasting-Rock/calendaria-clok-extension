@@ -1,34 +1,37 @@
 {
   "id": "phil-style-clock",
   "title": "Phil-Style Clock",
-  "description": "A standalone Foundry VTT world-time clock inspired by Phil's Day&Night Cycle. When Calendaria is active, the clock reads Calendaria's current date/time, calendar day length, sunrise/sunset, and time-setting API. No calendar UI, weather, lighting, or other features are added.",
-  "version": "1.0.0",
+  "description": "A standalone Foundry VTT clock inspired by the visual style and interaction of Phil's Day&Night Cycle. Uses Calendaria as its time source when Calendaria is active.",
+  "version": "0.0.0",
+  "authors": [
+    {
+      "name": "YOUR_NAME",
+      "url": "https://github.com/YOUR_USERNAME"
+    }
+  ],
   "compatibility": {
     "minimum": "12",
     "verified": "13"
   },
-  "authors": [
-    {
-      "name": "Standalone Clock"
-    }
-  ],
-  "esmodules": [
-    "scripts/clock.js"
-  ],
-  "styles": [
-    "styles/clock.css"
-  ],
-  "url": "https://github.com/PhilsModules/phils-day-night-cycle",
-  "license": "GPL-3.0-or-later",
   "relationships": {
     "systems": [],
     "requires": [],
     "recommends": [
       {
         "id": "calendaria",
-        "type": "module",
-        "compatibility": {}
+        "type": "module"
       }
     ]
-  }
+  },
+  "esmodules": [
+    "scripts/clock.js"
+  ],
+  "styles": [
+    "styles/clock.css"
+  ],
+  "url": "https://github.com/YOUR_USERNAME/phil-style-clock",
+  "bugs": "https://github.com/YOUR_USERNAME/phil-style-clock/issues",
+  "changelog": "https://github.com/YOUR_USERNAME/phil-style-clock/releases",
+  "readme": "https://github.com/YOUR_USERNAME/phil-style-clock/blob/main/README.md",
+  "license": "LICENSE"
 }
