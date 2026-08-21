@@ -1,0 +1,293 @@
+
+#phil-style-clock {
+  --clock-size: 174px;
+  --phase-accent: #46516d;
+  --phase-glow: #273149;
+
+  position: fixed;
+  left: auto;
+  top: auto;
+  right: 22px;
+  bottom: 22px;
+  width: var(--clock-size);
+  height: var(--clock-size);
+  z-index: 10000;
+  color: #eee7d6;
+  font-family: "Signika", "Palatino Linotype", serif;
+  user-select: none;
+  pointer-events: auto;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.55));
+}
+
+#phil-style-clock.dragging {
+  cursor: grabbing;
+}
+
+#phil-style-clock.hidden {
+  display: none;
+}
+
+#phil-style-clock .psc-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#phil-style-clock .psc-clock-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,.07), transparent 42%),
+    radial-gradient(circle, #302c28 0 61%, #1b1917 62% 68%, #080807 69% 100%);
+  border: 2px solid rgba(184,164,126,.72);
+  box-shadow:
+    inset 0 0 0 3px rgba(15,13,11,.75),
+    inset 0 0 20px rgba(0,0,0,.85),
+    0 0 0 1px rgba(238,224,192,.18),
+    0 6px 18px rgba(0,0,0,.6);
+  transition: transform .18s ease, opacity .18s ease;
+}
+
+#phil-style-clock .psc-segments {
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#phil-style-clock .psc-segment {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 50%;
+  top: 50%;
+  transform-origin: 0 0;
+  background:
+    linear-gradient(135deg, rgba(218,199,153,.14), rgba(40,36,31,.12));
+  clip-path: polygon(0 0, 100% 0, 100% 16%, 15% 100%, 0 100%);
+  opacity: .58;
+  border: 1px solid rgba(213,194,151,.12);
+}
+
+#phil-style-clock .s0 { transform: rotate(-90deg) skewY(-45deg); }
+#phil-style-clock .s1 { transform: rotate(-45deg) skewY(-45deg); }
+#phil-style-clock .s2 { transform: rotate(0deg) skewY(-45deg); }
+#phil-style-clock .s3 { transform: rotate(45deg) skewY(-45deg); }
+#phil-style-clock .s4 { transform: rotate(90deg) skewY(-45deg); }
+#phil-style-clock .s5 { transform: rotate(135deg) skewY(-45deg); }
+#phil-style-clock .s6 { transform: rotate(180deg) skewY(-45deg); }
+#phil-style-clock .s7 { transform: rotate(225deg) skewY(-45deg); }
+
+#phil-style-clock .psc-segment.active {
+  opacity: .95;
+  background:
+    radial-gradient(circle at 65% 35%, color-mix(in srgb, var(--phase-accent) 65%, white 5%), transparent 48%),
+    linear-gradient(135deg, var(--phase-glow), #191816 72%);
+  box-shadow: inset 0 0 15px rgba(255,220,150,.14);
+}
+
+#phil-style-clock .psc-inner-ring {
+  position: absolute;
+  inset: 25px;
+  border-radius: 50%;
+  border: 1px solid rgba(224,208,174,.24);
+  box-shadow:
+    inset 0 0 14px rgba(0,0,0,.75),
+    0 0 8px rgba(0,0,0,.4);
+}
+
+#phil-style-clock .psc-center {
+  position: absolute;
+  inset: 48px 25px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 2px 3px #000;
+  z-index: 4;
+}
+
+#phil-style-clock .psc-time {
+  font-size: 29px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+#phil-style-clock .psc-phase {
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  opacity: .78;
+}
+
+#phil-style-clock .psc-hand {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1px;
+  height: 50%;
+  transform-origin: 50% 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+#phil-style-clock .psc-hand-line {
+  position: absolute;
+  left: 0;
+  bottom: 7px;
+  width: 2px;
+  height: 57px;
+  transform: translateX(-50%);
+  background: linear-gradient(to top, rgba(236,214,166,.95), rgba(236,214,166,.05));
+  box-shadow: 0 0 5px rgba(224,189,121,.35);
+}
+
+#phil-style-clock .psc-hand-dot {
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  width: 9px;
+  height: 9px;
+  transform: translate(-50%, 50%);
+  border-radius: 50%;
+  background: #d6bf91;
+  border: 1px solid #211d18;
+  box-shadow: 0 0 5px rgba(0,0,0,.8);
+}
+
+#phil-style-clock .psc-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 42px;
+  height: 42px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(216,194,148,.7);
+  background:
+    radial-gradient(circle, #4b463f 0 45%, #25221f 47% 100%);
+  color: #ead9b7;
+  font-size: 25px;
+  line-height: 1;
+  padding: 0;
+  box-shadow:
+    inset 0 0 7px rgba(0,0,0,.9),
+    0 2px 7px rgba(0,0,0,.7);
+  cursor: pointer;
+  z-index: 8;
+}
+
+#phil-style-clock .psc-icon:hover {
+  filter: brightness(1.15);
+}
+
+#phil-style-clock .psc-arrow {
+  position: absolute;
+  z-index: 9;
+  color: #d8c7a5;
+  font-size: 15px;
+  text-shadow: 0 2px 4px #000;
+  pointer-events: none;
+  opacity: .85;
+}
+
+#phil-style-clock .psc-popover {
+  position: absolute;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 7px;
+  width: 148px;
+  border: 1px solid rgba(190,170,132,.5);
+  border-radius: 7px;
+  background: rgba(25,22,19,.96);
+  box-shadow: 0 5px 18px rgba(0,0,0,.65);
+}
+
+#phil-style-clock .psc-popover button {
+  min-height: 27px;
+  padding: 2px 4px;
+  border: 1px solid rgba(190,170,132,.28);
+  background: rgba(62,56,49,.7);
+  color: #e6dbc6;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+#phil-style-clock .psc-popover button:hover {
+  background: rgba(108,94,73,.8);
+}
+
+#phil-style-clock.orientation-above .psc-clock-face {
+  transform: translateY(-72%);
+}
+#phil-style-clock.orientation-below .psc-clock-face {
+  transform: translateY(72%);
+}
+#phil-style-clock.orientation-left .psc-clock-face {
+  transform: translateX(-72%);
+}
+#phil-style-clock.orientation-right .psc-clock-face {
+  transform: translateX(72%);
+}
+
+#phil-style-clock.orientation-above .psc-arrow {
+  left: calc(50% - 5px);
+  bottom: -2px;
+}
+#phil-style-clock.orientation-below .psc-arrow {
+  left: calc(50% - 5px);
+  top: -2px;
+  transform: rotate(180deg);
+}
+#phil-style-clock.orientation-left .psc-arrow {
+  top: calc(50% - 8px);
+  right: -2px;
+  transform: rotate(90deg);
+}
+#phil-style-clock.orientation-right .psc-arrow {
+  top: calc(50% - 8px);
+  left: -2px;
+  transform: rotate(-90deg);
+}
+
+#phil-style-clock.collapsed .psc-clock-face {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(.65);
+}
+#phil-style-clock.collapsed .psc-arrow {
+  display: none;
+}
+
+#phil-style-clock .psc-popover[hidden] {
+  display: none;
+}
+
+#phil-style-clock.orientation-above .psc-popover {
+  left: 50%;
+  bottom: 100%;
+  transform: translate(-50%, -82px);
+}
+#phil-style-clock.orientation-below .psc-popover {
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 82px);
+}
+#phil-style-clock.orientation-left .psc-popover {
+  right: 100%;
+  top: 50%;
+  transform: translate(-82px, -50%);
+}
+#phil-style-clock.orientation-right .psc-popover {
+  left: 100%;
+  top: 50%;
+  transform: translate(82px, -50%);
+}

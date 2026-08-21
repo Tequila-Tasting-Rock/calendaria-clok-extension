@@ -1,0 +1,34 @@
+{
+  "id": "phil-style-clock",
+  "title": "Phil-Style Clock",
+  "description": "A standalone Foundry VTT world-time clock inspired by Phil's Day&Night Cycle. When Calendaria is active, the clock reads Calendaria's current date/time, calendar day length, sunrise/sunset, and time-setting API. No calendar UI, weather, lighting, or other features are added.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "13"
+  },
+  "authors": [
+    {
+      "name": "Standalone Clock"
+    }
+  ],
+  "esmodules": [
+    "scripts/clock.js"
+  ],
+  "styles": [
+    "styles/clock.css"
+  ],
+  "url": "https://github.com/PhilsModules/phils-day-night-cycle",
+  "license": "GPL-3.0-or-later",
+  "relationships": {
+    "systems": [],
+    "requires": [],
+    "recommends": [
+      {
+        "id": "calendaria",
+        "type": "module",
+        "compatibility": {}
+      }
+    ]
+  }
+}
